@@ -14,7 +14,7 @@
     "client": "npm run start    && npm run build",
     "second": "",
     "dev": "concurrently \"npm run server --prefix server \" \"npm run client \"",
-    "postinstall": "npm install --prefix server && npm install && npm start --prefix server && npm start"
+    "postinstall": "npm install --prefix server && npm install && npm start --prefix server"
   },
   "eslintConfig": {
     "extends": "react-app"

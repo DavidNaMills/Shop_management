@@ -11,8 +11,9 @@
     "start": "npm run build && npm install --prefix server && npm start --prefix server",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "client": "npm run start    && npm run build",
-    "dev": "concurrently \"npm run server --prefix server \" \"npm run client \""
+    "client": "npm run start && npm run build",
+    "dev": "concurrently \"npm run server --prefix server \" \"npm run client \"",
+    "heroku-prebuild" :"npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"

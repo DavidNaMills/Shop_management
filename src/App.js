@@ -22,7 +22,7 @@ class App extends React.Component{
         return(
         <Router  history={history}>
             <div>
-                <Development/>
+                {process.env.ENV==='development'&&<Development/>}
                 <IsAuth><NavBarContainer /></IsAuth>
             <div className="container">
                 <AlertBar />

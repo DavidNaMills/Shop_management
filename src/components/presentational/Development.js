@@ -6,7 +6,7 @@ export default ()=>(
             <div>
                 <Alert bsStyle='info'>
                     <h2>
-                        production build
+                        DEVELOPMENT
                     </h2>
             </Alert>
         </div>

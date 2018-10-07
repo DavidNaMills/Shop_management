@@ -4,6 +4,7 @@ import {Tab, Tabs} from 'react-bootstrap';
 import StaffForm from '../forms/StaffForm';
 import UpdateStaffLevelForm from '../forms/UpdateStaffLevelForm';
 import AddLocale from '../../locales/Context';
+import Security from '../login/Security';
 
 
 class StaffSubTabs extends React.Component {
@@ -33,7 +34,9 @@ class StaffSubTabs extends React.Component {
               {staff!=null&&<UpdateStaffLevelForm {...this.props}/>}
             </Tab>
             <Tab eventKey={2} title={locale.staff.newStaff}>
-              {<StaffForm onSubmit={this.props.onSubmit}/>}
+              <Security level={3}>
+                {<StaffForm onSubmit={this.props.onSubmit}/>}
+              </Security>
             </Tab>
           </Tabs>
         );

@@ -4,7 +4,7 @@ import {Tab, Tabs} from 'react-bootstrap';
 import CustomerForm from '../forms/CustomerForm';
 import ViewCustomerDetails from '../forms/ViewCustomerDetails';
 import AddLocale from '../../locales/Context';
-// import Security from '../login/Security';
+import Security from '../login/Security';
 
 
 class CustSubTabs extends React.Component {
@@ -38,7 +38,9 @@ class CustSubTabs extends React.Component {
 
             
               <Tab eventKey={2} title={locale.customer.newCustomer}>
-                <CustomerForm onSubmit={this.props.onSubmit}/>
+                <Security level={3}>
+                  <CustomerForm onSubmit={this.props.onSubmit}/>
+                </Security>
               </Tab>
             
 

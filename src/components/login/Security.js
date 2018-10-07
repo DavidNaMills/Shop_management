@@ -1,8 +1,7 @@
 import {connect} from 'react-redux';
 
 const Security = props =>{
-    const test = props.staffLevel>=props.level;
-    console.log(test);
+    const test = +props.staffLevel>=+props.level;
     return(
             test===true &&props.children
     )

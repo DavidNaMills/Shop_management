@@ -62,18 +62,20 @@ class InvenSubTabs extends React.Component {
               </Row>
             </Tab>
             
-            <Security level={3}>
               <Tab eventKey={2} title={locale.inventory.inventoryStatistics}>
+            <Security level={3}>
+              <div>
                 <h2>COMING SOON!!!</h2>
                 <h3>graphs and details about the actual sales</h3>
-              </Tab>
+              </div>
             </Security>
+              </Tab>
             
-            <Security level={2}>
               <Tab eventKey={3} title={locale.inventory.newInventory}>
+            <Security level={3}>
                 {<InventoryForm {...this.props}/>}
-              </Tab>
             </Security>
+              </Tab>
           
           
           </Tabs>

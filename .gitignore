@@ -1,0 +1,11 @@
+.cache
+/DB
+.env.default
+.env
+.env.development
+node_modules
+.babelrc
+BACKEND_NOTES.txt
+TO FIX.txt
+server/node_modules
+package-lock.json

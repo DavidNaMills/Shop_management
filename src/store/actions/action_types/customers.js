@@ -1,0 +1,1 @@
+export const FETCH_CUSTOMERS = 'fetch_customers';

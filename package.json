@@ -1,0 +1,51 @@
+{
+  "name": "shop_playground3",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "start": "npm install --prefix server && react-scripts start && npm start --prefix server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "client": "npm run start    && npm run build",
+    "dev": "concurrently \"npm run server --prefix server \" \"npm run client \"",
+    "postbuild": "npm install --prefix server && npm start --prefix server"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "history": "^4.7.2",
+    "location": "0.0.1",
+    "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "react-scripts": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^4.0.1",
+    "dotenv": "^6.0.0",
+    "parcel-bundler": "^1.9.7",
+    "uuid": "^3.3.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

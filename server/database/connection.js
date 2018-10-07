@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-console.log(process.env.URL);
-
 mongoose.connect(process.env.URL, { useNewUrlParser: true });
 mongoose.promise = global.Promise;
 

@@ -22,7 +22,7 @@ if(process.env.NODE_ENV==="production"){
     const publicPath = path.join(__dirname, '..','build');
     app.use(express.static(publicPath));
     app.get('*', (req, res)=>{
-        res.send('help!!!');
+        res.json('help!!!');
         // res.sendFile(path.join(publicPath, 'index.html'));
     });    
 }

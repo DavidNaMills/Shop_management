@@ -7,14 +7,14 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "start": "npm install --prefix server && react-scripts start && npm start --prefix server",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "npm run start    && npm run build",
     "second": "",
     "dev": "concurrently \"npm run server --prefix server \" \"npm run client \"",
-    "postbuild": "npm install --prefix server && npm start --prefix server"
+    "postinstall": "npm install --prefix server && npm install && npm start --prefix server && npm start"
   },
   "eslintConfig": {
     "extends": "react-app"

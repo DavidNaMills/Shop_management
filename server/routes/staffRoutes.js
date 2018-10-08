@@ -17,9 +17,10 @@ module.exports=(app)=>{
     app.get('/staff/all', (req, res)=>{     //DONE
         findStaff()
         .then((allStaff)=>{
-            res.status(200).json(allStaff);
+            console.log(allStaff);
+            res.status(200).send(allStaff);
         }).catch((err)=>{
-            res.status(500).json({'err': err.message});
+            res.status(500).send({'err': err.message});
         });
     });   
 
@@ -30,7 +31,7 @@ module.exports=(app)=>{
             res.status(200).send({id:staff._id});
         })
         .catch((err)=>{
-            res.status(500).json({err: err.message});
+            res.status(500).send({err: err.message});
         })
     });
     
@@ -42,7 +43,7 @@ module.exports=(app)=>{
             res.status(200).send(record);
         })
         .catch((err)=>{
-            res.status(500).json({err:err.message});
+            res.status(500).send({err:err.message});
         })
     });
 };

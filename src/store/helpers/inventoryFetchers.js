@@ -76,7 +76,7 @@ export const addInventory=(values)=>{
             body: JSON.stringify(values)
         }
         .then(res=>console.log(res))
-        .then(res=>console.log(response.json())
+        .then(res=>console.log(res.json())
         .then(res=>res.json())
         ).then(response=>{
             if(response.err){
@@ -90,6 +90,6 @@ export const addInventory=(values)=>{
                 dispatch(setAlert('inventory_added', SUCCESS));
             }
         })
-        .catch(err=>{});
+        .catch(err=>{}));
     }
 }

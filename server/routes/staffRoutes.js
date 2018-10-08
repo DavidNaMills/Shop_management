@@ -18,7 +18,16 @@ module.exports=(app)=>{
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);
-            res.status(200).send(allStaff);
+            // res.status(404).send(allStaff);
+            res.status(404).send({
+                level: 3,
+                active: true,
+                _id: "5bb7198fe6e904002061d4a7",
+                name: "David",
+                username: "thedrunkingpig",
+                password: "$2a$10$YetGNQ7h00Xrp3g5fRwlQOy8l2w.tVIxhs5mJ1h6.t.WZBI1O1EIe",
+                email: "mullerlight73@hotmail.com"
+            });
         }).catch((err)=>{
             res.status(500).send({'err': err.message});
         });

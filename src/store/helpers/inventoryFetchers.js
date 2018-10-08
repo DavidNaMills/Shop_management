@@ -75,6 +75,7 @@ export const addInventory=(values)=>{
             },
             body: JSON.stringify(values)
         }
+        .then(res=>console.log(res))
         .then(res=>res.json())
         ).then(response=>{
             if(response.err){

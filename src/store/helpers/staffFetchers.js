@@ -9,6 +9,7 @@ export const fetchStaff=()=>{
                 'authorization': getState().auth.token
             }
         })
+        .then((response)=>{console.log(response); return response;})
         .then(response=>response.json())
         .then(response=>{
             if(response.err){

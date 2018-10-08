@@ -3,7 +3,7 @@ const Authentication = require('../passport/authentication');
 
 
 
-const  passport.authenticate('jwt', {session: false});
+const reqAuth = passport.authenticate('jwt', {session: false});
 const reqSignin = passport.authenticate('local', {session: false});
 
 

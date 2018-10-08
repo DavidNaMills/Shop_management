@@ -9,11 +9,7 @@ export const fetchStaff=()=>{
                 'authorization': getState().auth.token
             }
         })
-        .then((response)=>{
-            console.log(response); 
-            console.log(response.json());
-            return response;
-        })
+        .then(response=>console.log(response.json()))
         .then(response=>response.json())
         .then(response=>{
             if(response.err){
@@ -49,7 +45,8 @@ export const createStaff=(values)=>{
             body: JSON.stringify(values)
         }
         )
-        .then((res)=>{console.log(res.json());res.json(); })
+        .then(response=>console.log(response.json()))
+        .then(response=>response.json())
         .then(response=>{
             if(response.err){
                 if(response.err.errmsg){

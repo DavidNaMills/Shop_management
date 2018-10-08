@@ -9,8 +9,8 @@ export const fetchStaff=()=>{
                 'authorization': getState().auth.token
             }
         })
-        .then(response=>console.log(response.json()))
         .then(response=>response.json())
+        .then(res=>{console.log(res); return res;})
         .then(response=>{
             if(response.err){
                 console.log(response.err);
@@ -20,6 +20,7 @@ export const fetchStaff=()=>{
                     dispatch(setAlert(response.err, DANGER));
                 }
             } else{
+
                 dispatch(fetchAllStaff(response));
             }
         })

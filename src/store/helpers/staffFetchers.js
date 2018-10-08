@@ -9,7 +9,11 @@ export const fetchStaff=()=>{
                 'authorization': getState().auth.token
             }
         })
-        .then((response)=>{console.log(response); return response;})
+        .then((response)=>{
+            console.log(response); 
+            console.log(response.json());
+            return response;
+        })
         .then(response=>response.json())
         .then(response=>{
             if(response.err){
@@ -31,7 +35,9 @@ export const fetchStaff=()=>{
 }
 
 export const createStaff=(values)=>{
+    console.log('in createStaff');
     return (dispatch, getState)=>{
+        console.log('just before signup');
         return fetch(`/signup`,{
             method: 'POST',
             credentials: 'include',

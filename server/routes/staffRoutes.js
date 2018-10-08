@@ -15,9 +15,9 @@ module.exports=(app)=>{
     app.post('/signup',  Authentication.signup); //DONE
 
     app.get('/staff/all', (req, res)=>{     //DONE
-        findStaff()
-        .then((allStaff)=>{
-            console.log(allStaff);
+        // findStaff()
+        // .then((allStaff)=>{
+        //     console.log(allStaff);
             // res.status(404).send(allStaff);
             res.status(404).send({
                 level: 3,
@@ -28,9 +28,9 @@ module.exports=(app)=>{
                 password: "$2a$10$YetGNQ7h00Xrp3g5fRwlQOy8l2w.tVIxhs5mJ1h6.t.WZBI1O1EIe",
                 email: "mullerlight73@hotmail.com"
             });
-        }).catch((err)=>{
-            res.status(500).send({'err': err.message});
-        });
+        // }).catch((err)=>{
+            // res.status(500).send({'err': err.message});
+        // });
     });   
 
     app.delete('/staff', (req, res)=>{

@@ -11,7 +11,7 @@ export const fetchStaff=()=>{
         })
         .then(res=>{
             console.log(res.body);
-            const test = JSON.parse(res);
+            const test = JSON.stringify(res);
             console.log(test); return test;
         })
         // .then(response=>response.json())

@@ -12,25 +12,27 @@ export const fetchStaff=()=>{
         .then(res=>{
             console.log(res.body);
             const test = JSON.stringify(res);
-            console.log(test); return test;
+            console.log(test); 
+            return test;
         })
         // .then(response=>response.json())
         .then(response=>{
-            if(response.err){
-                console.log(response.err);
-                if(response.err.errmsg){
-                    dispatch(setAlert(response.err.errmsg, DANGER));
-                } else{
-                    dispatch(setAlert(response.err, DANGER));
-                }
-            } else{
+            console.log(response);
+            // if(response.err){
+            //     console.log(response.err);
+            //     if(response.err.errmsg){
+            //         dispatch(setAlert(response.err.errmsg, DANGER));
+            //     } else{
+            //         dispatch(setAlert(response.err, DANGER));
+            //     }
+            // } else{
 
-                dispatch(fetchAllStaff(response.allStaff));
-            }
+            //     dispatch(fetchAllStaff(response.allStaff));
+            // }
         })
         .catch((err)=>{
             console.log(err);
-            dispatch(setAlert(err, DANGER))
+            // dispatch(setAlert(err, DANGER))
         });
     }
 }

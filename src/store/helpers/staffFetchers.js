@@ -10,7 +10,7 @@ export const fetchStaff=()=>{
             }
         })
         .then(res=>{
-            console.log(res);
+            console.log(res.body);
             const test = JSON.parse(res);
             console.log(test); return test;
         })

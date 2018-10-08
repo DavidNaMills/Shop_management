@@ -1,19 +1,16 @@
 import {fetchAllStaff} from '../actions/staff';
 import {setAlert} from '../actions/notification';
 import {DANGER, SUCCESS} from '../../style/alert';
+import axios from 'axios';
 
 export const fetchStaff=()=>{
     return (dispatch, getState)=>{
-        return fetch(`/staff/all`,{
+        return axios({
+            method: 'get',
+            url: `/staff/all`,
             headers:{
                 'authorization': getState().auth.token
             }
-        })
-        .then(res=>{
-            console.log(res.body);
-            const test = JSON.stringify(res);
-            console.log(test); 
-            return test;
         })
         // .then(response=>response.json())
         .then(response=>{

@@ -10,6 +10,7 @@ export const fetchStaff=()=>{
             }
         })
         .then(res=>{
+            console.log(res);
             const test = JSON.parse(res);
             console.log(test); return test;
         })
@@ -24,7 +25,7 @@ export const fetchStaff=()=>{
                 }
             } else{
 
-                dispatch(fetchAllStaff(response));
+                dispatch(fetchAllStaff(response.allStaff));
             }
         })
         .catch((err)=>{

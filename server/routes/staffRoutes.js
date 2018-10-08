@@ -18,7 +18,7 @@ module.exports=(app)=>{
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);
-            res.status(200).send(allStaff);
+            res.status(200).send({allStaff});
         }).catch((err)=>{
             res.status(500).send({'err': err.message});
         });

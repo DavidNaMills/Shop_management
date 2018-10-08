@@ -49,7 +49,7 @@ export const createStaff=(values)=>{
             body: JSON.stringify(values)
         }
         )
-        .then(res=>res.json())
+        .then((res)=>{console.log(res.json());res.json(); })
         .then(response=>{
             if(response.err){
                 if(response.err.errmsg){

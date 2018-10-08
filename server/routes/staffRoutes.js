@@ -3,7 +3,7 @@ const Authentication = require('../passport/authentication');
 
 
 
-const reqAuth = passport.authenticate('jwt', {session: false});
+const  passport.authenticate('jwt', {session: false});
 const reqSignin = passport.authenticate('local', {session: false});
 
 
@@ -14,7 +14,7 @@ module.exports=(app)=>{
     app.post('/login',  reqSignin, Authentication.signin);  //DONE 
     app.post('/signup',  Authentication.signup); //DONE
 
-    app.get('/staff/all', reqAuth, (req, res)=>{     //DONE
+    app.get('/staff/all', (req, res)=>{     //DONE
         findStaff()
         .then((allStaff)=>{
             res.status(200).json(allStaff);
@@ -23,7 +23,7 @@ module.exports=(app)=>{
         });
     });   
 
-    app.delete('/staff', reqAuth, (req, res)=>{
+    app.delete('/staff', (req, res)=>{
         const {id} = req.body;
         deleteStaff(id)
         .then((staff)=>{
@@ -35,7 +35,7 @@ module.exports=(app)=>{
     });
     
 
-    app.put('/staff', reqAuth, (req, res)=>{
+    app.put('/staff', (req, res)=>{
         const {id, data}= req.body;
         updateStaff(id, data)
         .then((record)=>{

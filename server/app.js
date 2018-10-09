@@ -18,14 +18,14 @@ app.use(cors({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// if(process.env.NODE_ENV==="production"){
-//     const path= require("path");
-//     const publicPath = path.join(__dirname, '..','build');
-//     app.use(express.static(publicPath));
-//     app.get('*', (req, res)=>{
-//         res.json('help!!!');
-//     });    
-// }
+if(process.env.NODE_ENV==="production"){
+    const path= require("path");
+    const publicPath = path.join(__dirname, '..','build');
+    app.use(express.static(publicPath));
+    // app.get('*', (req, res)=>{
+    //     res.json('help!!!');
+    // });    
+}
 
 require('./routes/customerRoutes')(app);
 require('./routes/staffRoutes')(app);

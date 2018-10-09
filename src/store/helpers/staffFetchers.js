@@ -7,7 +7,7 @@ export const fetchStaff=()=>{
     return (dispatch, getState)=>{
         return axios({
             method: 'get',
-            url: `/staff/all`,
+            url: `/staff`,
             headers:{
                 'authorization': getState().auth.token
             }

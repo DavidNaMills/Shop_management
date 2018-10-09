@@ -18,7 +18,7 @@ module.exports=(app)=>{
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);
-            res.status(234).send('fuck this');
+            res.status(234).send({allStaff});
             // res.status(404).send({
             //     level: 3,
             //     active: true,

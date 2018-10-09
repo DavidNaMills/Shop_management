@@ -1,36 +1,28 @@
 import {fetchAllStaff} from '../actions/staff';
 import {setAlert} from '../actions/notification';
 import {DANGER, SUCCESS} from '../../style/alert';
-import axios from 'axios';
 
 export const fetchStaff=()=>{
     return (dispatch, getState)=>{
-        return axios({
-            method: 'get',
-            url: `/api/staff`,
-            headers:{
+        return fetch(`/staff`,{
+            headers: {
                 'authorization': getState().auth.token
             }
         })
-        // .then(response=>response.json())
-        .then(response=>{
-            console.log(response);
-            // if(response.err){
-            //     console.log(response.err);
-            //     if(response.err.errmsg){
-            //         dispatch(setAlert(response.err.errmsg, DANGER));
-            //     } else{
-            //         dispatch(setAlert(response.err, DANGER));
-            //     }
-            // } else{
+        .then(response=>response.json())
+        .then((response)=>{
+            if(response.err){
+                if(response.err.errmsg){
+                    dispatch(setAlert(response.err.errmsg, DANGER));
+                } else{
+                    dispatch(setAlert(response.err, DANGER));
+                }
+            } else{
+                dispatch(fetchAllStaff(response));
+            }
 
-            //     dispatch(fetchAllStaff(response.allStaff));
-            // }
         })
-        .catch((err)=>{
-            console.log(err);
-            // dispatch(setAlert(err, DANGER))
-        });
+        .catch(err=>dispatch(setAlert(err.errmsg, DANGER)));
     }
 }
 

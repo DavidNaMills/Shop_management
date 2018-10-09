@@ -6,6 +6,7 @@ const express = require('express');
 const passport = require('passport');
 
 
+// res.sendFile(path.join(publicPath, 'index.html'));
 
 const app = express();
 
@@ -23,7 +24,6 @@ if(process.env.NODE_ENV==="production"){
     app.use(express.static(publicPath));
     app.get('*', (req, res)=>{
         res.json('help!!!');
-        // res.sendFile(path.join(publicPath, 'index.html'));
     });    
 }
 

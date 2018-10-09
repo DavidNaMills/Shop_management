@@ -14,7 +14,7 @@ module.exports=(app)=>{
     app.post('/login',  reqSignin, Authentication.signin);  //DONE 
     app.post('/signup',  Authentication.signup); //DONE
 
-    app.get('/staff', (req, res)=>{     //DONE
+    app.get('/api/staff', (req, res)=>{     //DONE
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);

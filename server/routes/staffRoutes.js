@@ -18,8 +18,8 @@ module.exports=(app)=>{
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);
-            // res.status(200).send({allStaff: JSON.stringify(allStaff)});
-            res.status(404).send('bollocks!!!');
+            res.status(200).send(allStaff);
+            // res.status(200).send('bollocks!!!');
             // res.status(404).send({
             //     level: 3,
             //     active: true,

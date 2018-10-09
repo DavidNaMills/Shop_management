@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyparser.json());
 app.use(cors({
-    credentials: true, origin: 'http://localhost:1234'
+    credentials: true, origin: 'https://shangnateashop.herokuapp.com/'
 }));
 
 app.use(passport.initialize());
@@ -22,8 +22,8 @@ if(process.env.NODE_ENV==="production"){
     const publicPath = path.join(__dirname, '..','build');
     app.use(express.static(publicPath));
     app.get('*', (req, res)=>{
-        // res.json('help!!!');
-        res.sendFile(path.join(publicPath, 'index.html'));
+        res.json('help!!!');
+        // res.sendFile(path.join(publicPath, 'index.html'));
     });    
 }
 

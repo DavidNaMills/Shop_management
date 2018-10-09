@@ -43,7 +43,7 @@ module.exports=(app)=>{
     });
 
 
-    app.post('/customer', reqAuth, (req, res)=>{
+    app.post('/customer', (req, res)=>{
         const data = req.body;
         createCustomer(data)
         .then((record)=>{

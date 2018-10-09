@@ -18,11 +18,9 @@ import {StaffContainer, CustomerContainer, InventoryContainer, PurchaseContainer
 class App extends React.Component{ 
 
     render(){
-        console.log(process.env.ENV);
         return(
         <Router  history={history}>
             <div>
-                {process.env.ENV==='development'&&<Development/>}
                 <IsAuth><NavBarContainer /></IsAuth>
             <div className="container">
                 <AlertBar />

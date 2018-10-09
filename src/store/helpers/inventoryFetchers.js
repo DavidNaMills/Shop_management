@@ -64,6 +64,7 @@ export const updateInventory=(data, id)=>{
 }
 
 export const addInventory=(values)=>{
+    console.log(values);
     return (dispatch, getState)=>{
         return fetch(`/inventory`,{
             method: 'POST',
@@ -74,11 +75,9 @@ export const addInventory=(values)=>{
                 'authorization': getState().auth.token
             },
             body: JSON.stringify(values)
-        }
-        .then(res=>console.log(res))
-        .then(res=>console.log(res.json())
+        })
         .then(res=>res.json())
-        ).then(response=>{
+        .then(response=>{
             if(response.err){
                 if(response.err.errmsg){
                     dispatch(setAlert(response.err.errmsg, DANGER));
@@ -90,6 +89,6 @@ export const addInventory=(values)=>{
                 dispatch(setAlert('inventory_added', SUCCESS));
             }
         })
-        .catch(err=>{}));
+        .catch(err=>{});
     }
 }

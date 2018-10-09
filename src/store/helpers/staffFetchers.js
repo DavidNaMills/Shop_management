@@ -27,9 +27,7 @@ export const fetchStaff=()=>{
 }
 
 export const createStaff=(values)=>{
-    console.log('in createStaff');
     return (dispatch, getState)=>{
-        console.log('just before signup');
         return fetch(`/signup`,{
             method: 'POST',
             credentials: 'include',
@@ -41,7 +39,6 @@ export const createStaff=(values)=>{
             body: JSON.stringify(values)
         }
         )
-        .then(response=>console.log(response.json()))
         .then(response=>response.json())
         .then(response=>{
             if(response.err){

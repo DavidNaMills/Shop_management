@@ -14,11 +14,11 @@ module.exports=(app)=>{
     app.post('/login',  reqSignin, Authentication.signin);  //DONE 
     app.post('/signup',  Authentication.signup); //DONE
 
-    app.get('/staff/all', (req, res)=>{     //DONE
+    app.get('/staff', (req, res)=>{     //DONE
         findStaff()
         .then((allStaff)=>{
             console.log(allStaff);
-            res.status(200).send('fuck this');
+            res.status(234).send('fuck this');
             // res.status(404).send({
             //     level: 3,
             //     active: true,

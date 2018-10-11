@@ -201,10 +201,10 @@ class StaffForm extends React.Component{
                 <FormGroup>
                     <Row>
                         <Col smOffset={2} sm={2}>
-                            <Button type="submit" bsStyle="success" block>{locale.btns.submit}</Button>
+                            <Button type="submit" bsStyle="success" block disabled={this.props.disabled}>{locale.btns.submit}</Button>
                         </Col>
                         <Col sm={2}>
-                            <Button bsStyle="warning" onClick={()=>this.clear()} block>{locale.btns.clear}</Button>
+                            <Button bsStyle="warning" onClick={()=>this.clear()} block disabled={this.props.disabled}>{locale.btns.clear}</Button>
                         </Col>
                     </Row>
                 </FormGroup>

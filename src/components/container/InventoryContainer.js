@@ -71,13 +71,13 @@ class InventoryContainer extends React.Component{
     render(){
         const {allInven} = this.state;
         return(
-        <div>
+            <div style={{paddingTop:'3vh'}}>
             <Row>
                 <Col sm={2}>
                     {allInven.length>0&&allInven.map(item=><StaffItem name={item.name} getStaff={this.getInventory} id={item._id} key={item._id} iselected={this.isSelected(item._id)}/>)}
                 </Col>
                 <Col sm={10}>
-                    <InvenSubTabs inventory={this.state.selectedInven} changeQuantity={this.changeQuantity} changePrice={this.changePrice} onDelete={this.onDelete} onSubmit={this.onSubmit} onUpdate={this.onUpdate}/>
+                    <InvenSubTabs disabled={this.props.isLoading} inventory={this.state.selectedInven} changeQuantity={this.changeQuantity} changePrice={this.changePrice} onDelete={this.onDelete} onSubmit={this.onSubmit} onUpdate={this.onUpdate}/>
                 </Col>
             </Row>
         </div>
@@ -88,7 +88,8 @@ class InventoryContainer extends React.Component{
 
 const mapStateToProps=(state)=>({
     name: state.auth.staff.name,
-    inventory: state.inventory
+    inventory: state.inventory,
+    isLoading: state.spinner.isLoading
 });
 
 const mapDispatchToProps=(dispatch)=>({

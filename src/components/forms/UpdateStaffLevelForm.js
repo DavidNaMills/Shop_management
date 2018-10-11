@@ -50,8 +50,8 @@ class UpdateStaffLevelForm extends React.Component{
                   </Row>
                   <Row>
                   <Col sm={5}>
-                  {userName!==staff.name&&<Button bsStyle="success" disabled={level===origLevel&&true} onClick={()=>onUpdateLevel(level)} block> {level===origLevel?locale.staff.LEVEL[level] : `${locale.btns.updateLvl} ${locale.staff.LEVEL[level]}`}</Button>}
-                  {userName!==staff.name&&<Button bsStyle="danger" onClick={()=>deleteStaff()}>{locale.btns.delete}</Button>}
+                  {userName!==staff.name&&<Button bsStyle="success" disabled={(level===origLevel||this.props.disabled)&&true} onClick={()=>onUpdateLevel(level)} block> {level===origLevel?locale.staff.LEVEL[level] : `${locale.btns.updateLvl} ${locale.staff.LEVEL[level]}`}</Button>}
+                  {userName!==staff.name&&<Button bsStyle="danger" onClick={()=>deleteStaff()} disabled={this.props.disabled}>{locale.btns.delete}</Button>}
                     </Col>
                   </Row>
             </div>

@@ -7,7 +7,7 @@ const NavBar =({locale, logout, name, level})=>(
 <Navbar inverse collapseOnSelect>
   <Navbar.Header>
     <Navbar.Brand>
-      <a href="#brand">Shop Management</a>
+      <a href='#'>Shop Management</a>
     </Navbar.Brand>
     <Navbar.Toggle />
   </Navbar.Header>

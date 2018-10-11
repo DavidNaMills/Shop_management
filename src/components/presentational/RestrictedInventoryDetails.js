@@ -31,7 +31,7 @@ class RestrictedInventoryDetails extends React.Component{
                                 <Col md={4}>
                                     <FormGroup controlId="formHorizontalName">
                                         <FormControl type="Number" placeholder={this.state.newPrice} onChange={event=>this.setState({newPrice: event.target.value})}/>
-                                        <Button type="submit" bsStyle="success" block onClick={()=>changePrice(this.state.newPrice)}>{locale.btns.updatePrc}</Button>
+                                        <Button type="submit" bsStyle="success" block disabled={this.props.disabled} onClick={()=>changePrice(this.state.newPrice)}>{locale.btns.updatePrc}</Button>
                                     </FormGroup>
                                 </Col>
                                 <hr/>

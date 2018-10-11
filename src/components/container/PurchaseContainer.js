@@ -10,6 +10,7 @@ import CompleteOrder from '../presentational/CompletedOrder';
 import {fetchCustomers} from '../../store/helpers/customerFetchers';
 import {fetchInventory} from '../../store/helpers/inventoryFetchers';
 import {createPurchases} from '../../store/helpers/purchaseFetchers';
+import {resetPurchase} from '../../store/actions/purchases';
 import AddLocale from '../../locales/Context';
 
 const STAGES=['Select Customer', 'Select Product', 'Check Order', 'Completed'];
@@ -38,11 +39,20 @@ class PurchaseContainer extends React.Component{
 
     static getDerivedStateFromProps(nextProps, prevState){
         if(nextProps !== prevState){
-            return {
-                allInven: nextProps.inventory,
-                allCust: nextProps.customers,
-                stage: nextProps.message==='purchase_placed'?3:prevState.stage,
-                percent: nextProps.message==='purchase_placed'?100:prevState.percent
+            if(nextProps.isComplete.completed === true){
+                return{
+                    allInven: nextProps.inventory,
+                    allCust: nextProps.customers,
+                    stage: 3,
+                    percent: 100       
+                }
+            } else {
+                return {
+                    allInven: nextProps.inventory,
+                    allCust: nextProps.customers,
+                    stage: nextProps.message==='purchase_placed'?3:prevState.stage,
+                    percent: nextProps.message==='purchase_placed'?100:prevState.percent
+                }
             }
         }
         return prevState;
@@ -67,9 +77,12 @@ class PurchaseContainer extends React.Component{
     }));
 
     /**Resets the state */
-    reset=()=>this.setState({
+    reset=()=>{
+        this.props.resetPurchase();
+        this.setState({
         ...DEFAULTS
-    });
+        });
+    }
 
     setCustomer=(id)=>{
         const cust = this.state.allCust.filter(temp=>temp._id===id);
@@ -118,14 +131,11 @@ class PurchaseContainer extends React.Component{
         const refNo=uuid();
         this.setState({refNo});
 
-        this.props.createPurchases(s, customer, this.props.staff, refNo);
-        if(this.state.completed){
-            this.increment();
-        }
+        this.props.createPurchases({inven:s, customer, staff:this.props.staff, refNo});
     }
 
     render(){
-        const {locale}=this.props;
+        const {locale, isLoading}=this.props;
         return(
         <Grid>
             <h3>{STAGES[this.state.stage]}</h3>
@@ -153,7 +163,7 @@ class PurchaseContainer extends React.Component{
             }
             {this.state.stage===0&& <div>{<CustomerList list={this.state.allCust} setCustomer={this.setCustomer} selected={this.state.customer}/>}</div>}
             {this.state.stage===1&& <div>{<InventoryList list={this.state.allInven} selectItem={this.selectItem} compiledList={this.state.selectedItems}/>}</div>}
-            {this.state.stage===2&& <div><CheckPurchasePrice cancel={this.reset} confirmOrder={this.confirmOrder} selectedItems={this.state.selectedItems} customer={this.state.customer} staff={this.props.staff}/></div>}
+            {this.state.stage===2&& <div><CheckPurchasePrice disabled={isLoading} cancel={this.reset} confirmOrder={this.confirmOrder} selectedItems={this.state.selectedItems} customer={this.state.customer} staff={this.props.staff}/></div>}
             {this.state.stage===3&& <div><CompleteOrder completed={this.reset} refNo={this.state.refNo}/></div>}
 
         </Grid>
@@ -166,13 +176,15 @@ const mapStateToProps=(state)=>({
     staff: state.auth.staff,
     inventory: state.inventory,
     customers: state.customers,
-    message : state.alert.msg
+    isComplete: state.isComplete,
+    isLoading: state.spinner.isLoading
 });
 
 const mapDispatchToProps=(dispatch)=>({
     fetchCustomers: ()=>dispatch(fetchCustomers()),
     fetchInventory:()=>dispatch(fetchInventory()),
-    createPurchases: (data, customer, staff, refNo)=>dispatch(createPurchases(data, customer, staff, refNo))
+    createPurchases: (data, customer, staff, refNo)=>dispatch(createPurchases(data, customer, staff, refNo)),
+    resetPurchase: ()=>dispatch(resetPurchase())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddLocale(PurchaseContainer));

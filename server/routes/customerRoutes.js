@@ -1,6 +1,6 @@
 const passport = require('passport');
 const reqAuth = passport.authenticate('jwt', {session: false});
-const {createCustomer, deleteCustomer, updateCustomer, searchCustomer} = require('../database/functions/customer');
+const {createCustomer, deleteCustomer, updateCustomer, searchCustomer, updateCustomerTTL} = require('../database/functions/customer');
 
 
 
@@ -34,6 +34,17 @@ module.exports=(app)=>{
     app.put('/customer', (req, res)=>{
         const {id, data} =  req.body;
         updateCustomer(id, data)
+        .then((record)=>{
+            res.status(200).json(record);
+        })
+        .catch((err)=>{
+            res.status(500).send({'err':err.message});
+        })
+    });
+
+    app.put('/customer/total', (req, res)=>{
+        const {id, data} =  req.body;
+        updateCustomerTTL(id, data)
         .then((record)=>{
             res.status(200).json(record);
         })

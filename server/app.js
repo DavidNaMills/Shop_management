@@ -12,7 +12,8 @@ const app = express();
 
 app.use(bodyparser.json());
 app.use(cors({
-    credentials: true, origin: 'https://shangnateashop.herokuapp.com/'
+    credentials: true, origin: 'http://localhost:3000'
+    // credentials: true, origin: 'https://shangnateashop.herokuapp.com/'
 }));
 
 app.use(passport.initialize());

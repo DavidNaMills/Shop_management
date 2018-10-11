@@ -39,7 +39,7 @@ class CustSubTabs extends React.Component {
             
               <Tab eventKey={2} title={locale.customer.newCustomer}>
                 <Security level={3}>
-                  <CustomerForm onSubmit={this.props.onSubmit}/>
+                  <CustomerForm disabled={this.props.disabled} onSubmit={this.props.onSubmit}/>
                 </Security>
               </Tab>
             

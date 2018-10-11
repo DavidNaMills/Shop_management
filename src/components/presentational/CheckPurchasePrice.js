@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, Button, Col, Row} from 'react-bootstrap';
 import AddLocale from '../../locales/Context';
 
-const CheckPurchasePrice = ({customer, staff, selectedItems, confirmOrder, cancel, locale})=>{
+const CheckPurchasePrice = ({customer, staff, selectedItems, confirmOrder, cancel, locale, disabled})=>{
     let totalCost=0;
     let totalItems=0;
 
@@ -77,7 +77,7 @@ const CheckPurchasePrice = ({customer, staff, selectedItems, confirmOrder, cance
                 </tbody>
             </Table>
             <Col md={2} smOffset={3}>
-                <Button bsStyle="success" block onClick={()=>confirmOrder()}>{locale.btns.confirm}</Button>
+                <Button bsStyle="success" block onClick={()=>confirmOrder()} disabled={disabled}>{locale.btns.confirm}</Button>
             </Col>
             <Col md={2} smOffset={2}>
                 <Button bsStyle="danger" block onClick={()=>cancel()}>{locale.btns.cancel}</Button>

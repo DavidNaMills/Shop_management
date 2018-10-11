@@ -5,7 +5,6 @@ import {validateUsername, validatePassword} from '../validationFunctions/index';
 import {startLogin} from '../../store/actions/auth';
 import AddLocale from '../../locales/Context';
 
-
 const DEFAULTS={
     username: '',
     password: '',
@@ -15,6 +14,27 @@ const DEFAULTS={
     passF:false,
     displayBtn:false    
 };
+
+const styles={
+    margin: '15vh',
+    paddingTop: '1vh',
+    
+    marginLeft: '5vh',
+    paddingLeft: '10vh',
+
+    marginRight: '5vh',
+    paddingRight: '10vh',
+    
+    paddingBottom: '5vh',
+    border: 'solid black 1px',
+    borderRadius: '5px'
+};
+
+const titleStyle={
+    textAlign:'center', 
+    paddingBottom: '30px'
+};
+
 
 class Login extends React.Component{ 
     state={
@@ -75,12 +95,12 @@ class Login extends React.Component{
 
     displayUsername = ()=>(
             <div>
-                <h1>ShangNaDavid</h1>
+                <h1 style={titleStyle}>ShangNaDavid</h1>
                 <h2>{this.props.locale.staff.username}</h2>
                 <form>
                     <FormGroup controlId="formHorizontalUsername" validationState={this.validateLocalUsername()} onBlur={()=>this.setState({userF:true})}>
                         <Row>
-                            <Col sm={4}>
+                            <Col md={12}>
                                 <FormControl type="Username" placeholder={this.props.locale.staff.username} value={this.state.username} onChange={val=>this.userChange(val)}/>
                                 {this.state.userF && <HelpBlock>{this.props.locale.HELP.username}</HelpBlock>}
                             </Col>
@@ -89,14 +109,15 @@ class Login extends React.Component{
                 </form>                
             </div>
         )
-
-    displayPassword = ()=>(
+        
+        displayPassword = ()=>(
             <div>
+                <h1 style={titleStyle}>ShangNaDavid</h1>
                 <h2>{this.props.locale.staff.password}</h2>
                 <form>
                     <FormGroup controlId="formHorizontalPassword" validationState={this.validateLocalPassword()} onBlur={()=>this.setState({passF:true})}>
                         <Row>
-                            <Col sm={4}>
+                            <Col md={12}>
                                 <FormControl type="Password" placeholder={this.props.locale.staff.password} value={this.state.password} onChange={val=>this.passChange(val)}/>
                                 {this.state.passF && <HelpBlock>{this.props.locale.HELP.password}</HelpBlock>}
                             </Col>
@@ -114,7 +135,7 @@ class Login extends React.Component{
             this.props.startLogin(this.state.username, this.state.password);
         }
     }
-
+    // 
     cancel=()=>{
         this.setState({
             ...DEFAULTS
@@ -123,28 +144,37 @@ class Login extends React.Component{
 
     render(){
         return(
-            <div className="container"><Row>
-                {this.state.isUsername? this.displayUsername() : this.displayPassword()}
-                {this.state.displayBtn &&
-                    <div>
-                        <Row>
-                            <Col sm={4}>
-                                <Button bsStyle="info" onClick={()=>{this.btnOnClick()}} block>
-                                    Next
-                                </Button>
-                            </Col>
-                        </Row>
-                    </div>
-                }
-                </Row>
+            <div className="container">
+                <Col md={8} mdOffset={2}>
+                <div style={styles}>
+
                 <Row>
-                <Col sm={4}>
-                    <br/>
-                    <Button bsStyle="warning" onClick={()=>{this.cancel()}} block>
-                        Cancel
-                    </Button>
-                </Col>
+                    {this.state.isUsername? this.displayUsername() : this.displayPassword()}
+                    {this.state.displayBtn &&
+                        <div>
+                            <Row>
+                                <Col md={12}>
+                                    <Button bsStyle="info" onClick={()=>{this.btnOnClick()}} block disabled={this.props.isLoading}>
+                                        Next
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </div>
+                    }
+                    </Row>
+                        <div>
+                    <Row>
+
+                    <Col md={12}>
+                        <br/>
+                        <Button bsStyle="warning" onClick={()=>{this.cancel()}} block disabled={this.props.isLoading}>
+                            Cancel
+                        </Button>
+                    </Col>
                 </Row>
+                        </div>
+                    </div>
+                </Col>
             </div>
         );
     }
@@ -154,5 +184,9 @@ const mapDispatchToProps=(dispatch)=>({
     startLogin : (username, password)=>dispatch(startLogin(username, password))
 });
 
+const mapStateToProps=(state)=>({
+    isLoading: state.spinner.isLoading
+})
+
 // export default Login;
-export default connect(undefined, mapDispatchToProps)(AddLocale(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(AddLocale(Login));

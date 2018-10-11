@@ -31,7 +31,7 @@ class InventoryChangeQuantity extends React.Component{
                                 <Col md={4}>
                                     <FormGroup controlId="formHorizontalQty">
                                         <FormControl type="Number" placeholder={this.state.newQty} onChange={val=>this.setState({newQty: val.target.value})}/>
-                                        <Button type="submit" bsStyle="success" block onClick={()=>changeQuantity(this.state.newQty)}>{locale.btns.updateQty}</Button>
+                                        <Button type="submit" bsStyle="success" disabled={this.props.disabled} block onClick={()=>changeQuantity(this.state.newQty)}>{locale.btns.updateQty}</Button>
                                     </FormGroup>
                                 </Col>
                             </Row>

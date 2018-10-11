@@ -35,7 +35,7 @@ class StaffSubTabs extends React.Component {
             </Tab>
             <Tab eventKey={2} title={locale.staff.newStaff}>
               <Security level={3}>
-                {<StaffForm onSubmit={this.props.onSubmit}/>}
+                {<StaffForm disabled={this.props.disabled} onSubmit={this.props.onSubmit}/>}
               </Security>
             </Tab>
           </Tabs>

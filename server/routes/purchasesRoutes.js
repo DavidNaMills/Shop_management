@@ -21,9 +21,7 @@ module.exports=(app)=>{
     });
 
     app.post('/purchases',  (req, res)=>{   //DONE
-        const data = req.body;
-
-        createPurchase(data)
+        createPurchase(req.body)
         .then((records)=>{
             res.status(200).json(records);
         })

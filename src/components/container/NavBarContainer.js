@@ -10,7 +10,7 @@ class NavBarContainer extends React.Component{
     render(){
         const {name, level} = this.props.user;
         return(
-            <div>
+            <div style={{marginBottom:'2vh'}}>
                 <NavBar logout={this.props.logout} name={name} level={level}/>
             </div>
         );

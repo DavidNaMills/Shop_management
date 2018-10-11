@@ -72,12 +72,12 @@ class StaffContainer extends React.Component{
     render(){
         const {allStaff}=this.state;
         return(
-        <div>
+        <div style={{paddingTop:'3vh'}}>
             <Col sm={2}>
             {allStaff.length>0&&allStaff.map(item=><StaffItem name={item.name} getStaff={this.getStaff} id={item._id} key={item._id} iselected={this.isSelected(item._id)}/>)}
             </Col>
             <Col sm={10}>
-                <StaffSubTabs userName={this.props.name} staff={this.state.selectedStaff} deleteStaff={this.deleteStaff} onSubmit={this.onSubmit} onUpdateLevel={this.onUpdateLevel}/>
+                <StaffSubTabs disabled={this.props.isLoading} userName={this.props.name} staff={this.state.selectedStaff} deleteStaff={this.deleteStaff} onSubmit={this.onSubmit} onUpdateLevel={this.onUpdateLevel}/>
             </Col>
         </div>
 );
@@ -87,7 +87,8 @@ class StaffContainer extends React.Component{
 
 const mapStateToProps=(state)=>({
     name: state.auth.staff.name,
-    staff: state.staff
+    staff: state.staff,
+    isLoading: state.spinner.isLoading
 })
 
 const mapDispatchToProps=(dispatch)=>({

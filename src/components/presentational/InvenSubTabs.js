@@ -26,8 +26,7 @@ class InvenSubTabs extends React.Component {
       }
     
       render() {
-        const {inventory, locale}=this.props;
-
+        const {locale}=this.props;
         return (
           <Tabs
             eventKey={this.state.key}
@@ -37,26 +36,26 @@ class InvenSubTabs extends React.Component {
             <Tab eventKey={1} title={locale.inventory.inventoryDetails}>
               <Row>
                   <Col sm={6}>
-                    {inventory.length>0&&<BasicInventoryDetails {...this.props}/>}
+                    <BasicInventoryDetails {...this.props}/>
                   </Col>
 
-                  <Security level={3}>
                     <Col sm={6}>
-                      {inventory.length>0&&<SuppliersDetails {...this.props}/>}
+                      <Security level={3}>
+                        <SuppliersDetails {...this.props}/>
+                      </Security>
                     </Col>
-                  </Security>
 
                 </Row>
                 <Row>
-                  <Security level={2}>
                     <Col sm={6}>
-                      {inventory.length>0&&<InventoryChangeQuantity {...this.props}/>}
+                      <Security level={2}>
+                        <InventoryChangeQuantity {...this.props}/>
+                      </Security>
                     </Col>
-                  </Security>
 
                   <Security level={2}>
                     <Col sm={6}>
-                      {inventory.length>0&&<RestrictedInventoryDetails {...this.props}/>}
+                      <RestrictedInventoryDetails {...this.props}/>
                     </Col>
                   </Security>
               </Row>

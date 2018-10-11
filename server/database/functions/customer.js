@@ -33,6 +33,16 @@ const updateCustomer = (_id, details)=>{
     });
 };
 
+const updateCustomerTTL = (_id, value)=>{
+    return new Promise((resolve, reject)=>{
+        customerModel.findOneAndUpdate({_id},{$inc: {purchaseTtl: value}}, {'new':true}, (err, cust)=>{
+            if(err){reject(err);}
+            if(!cust){reject(new Error('customer_not_found'));}
+            resolve(cust);
+        });        
+    });
+};
+
 const searchCustomer = ()=>{
     return new Promise((resolve, reject)=>{
         customerModel.find({})
@@ -47,5 +57,6 @@ module.exports={
     createCustomer,
     deleteCustomer,
     updateCustomer,
-    searchCustomer
+    searchCustomer,
+    updateCustomerTTL
 }

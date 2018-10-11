@@ -58,12 +58,12 @@ class CustomerContainer extends React.Component{
     render(){
         const {allCust} = this.state;
         return(
-        <div>
+            <div style={{paddingTop:'3vh'}}>
             <Col sm={2}>
                 {allCust.length>0&&allCust.map(item=><StaffItem name={item.name} getStaff={this.getStaff} id={item._id} key={item._id} iselected={this.isSelected(item._id)}/>)}
             </Col>
             <Col sm={10}>
-                <CustSubTabs customer={this.state.selectedCust} deleteCustomer={this.deleteCustomer} onSubmit={this.onSubmit} onUpdate={this.onUpdate}/>
+                <CustSubTabs disabled={this.props.isLoading} customer={this.state.selectedCust} deleteCustomer={this.deleteCustomer} onSubmit={this.onSubmit} onUpdate={this.onUpdate}/>
             </Col>
         </div>
 );
@@ -72,7 +72,8 @@ class CustomerContainer extends React.Component{
 }
 
 const mapStateToProps=(state)=>({
-    customers: state.customers
+    customers: state.customers,
+    isLoaded: state.spinner.isLoading
 });
 
 const mapDispatchToProps=(dispatch)=>({

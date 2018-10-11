@@ -1,18 +1,42 @@
 import {setAlert} from '../actions/notification';
 import {DANGER, SUCCESS} from '../../style/alert';
+import {completedPurchase} from '../actions/purchases';
+import {startLoader, endLoader} from '../actions/spinner';
+import {deductInventory, fetchInventory} from './inventoryFetchers';
+import {updateCustomerTTL} from './customerFetchers';
 
 
-const purchaseCall=(data)=>{
+export const createPurchases=({inven, customer, refNo})=>{
+    return (dispatch)=>{
+        dispatch(makePurchase(inven, customer, refNo));
+        let ttl=0;
+        inven.forEach((item)=>{
+            dispatch(deductInventory({id:item._id, data: item.quantity}));
+            ttl+=(item.quantity*item.price)
+        });
+
+        dispatch(updateCustomerTTL({id:customer._id, data: ttl}));
+        dispatch(fetchInventory());
+    }
+}
+
+const makePurchase=(inven, customer, refNo)=>{
     return (dispatch, getState)=>{
+        dispatch(startLoader());
         return fetch(`/purchases`,{
             method: 'POST',
             credentials: 'include',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
-                'authorization': getState().auth.token,
+                'authorization': getState().staff.token,
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                inven,
+                customer,
+                refNo,
+                __staff: getState().auth.staff._id,
+            })
         }
         )
         .then(res=>res.json())
@@ -23,38 +47,16 @@ const purchaseCall=(data)=>{
                 } else{
                     dispatch(setAlert(response.err, DANGER));
                 }
-            }
-        })
-        .catch(err=>dispatch(setAlert(err.errmsg, DANGER)));
-    }
-}
-
-export const createPurchases=(inven, customer, staff, refNo)=>{
-    return (dispatch)=>{
-        let result=true;
-        return new Promise((resolve, reject)=>{
-            inven.forEach((item)=>{
-                const data= {
-                    invoiceNo: refNo,
-                    totalPrice: (+item.quantity*+item.price),
-                    unitPrice: item.price,
-                    quantity: item.quantity,
-                    dateOfPurchase: new Date(),
-                    __customer: customer._id,
-                    __staff: staff._id,
-                    __inventory: item._id
-                };
-                
-                purchaseCall(data);
-            });
-            
-            if(result){
+                dispatch(endLoader());
+            } else {
+                dispatch(completedPurchase());
                 dispatch(setAlert('purchase_placed', SUCCESS));
-                resolve();
-            }else{
-                dispatch(setAlert('Purchase_not_placed', DANGER));
-                reject();
             }
         })
+        .then(()=>{dispatch(endLoader());})
+        .catch((err)=>{
+            dispatch(endLoader());
+            dispatch(setAlert(err.errmsg, DANGER));
+        });
     }
 }

@@ -9,8 +9,7 @@ import Login from './components/login/Login';
 import IsAuth from './components/login/IsAuth';
 import Dashboard from './components/Dashboard';
 import AlertBar from './components/container/AlertBar';
-
-import Development from './components/presentational/Development';
+import Spinner from './components/presentational/Spinner';
 
 import {StaffContainer, CustomerContainer, InventoryContainer, PurchaseContainer} from './components/container';
 
@@ -24,6 +23,7 @@ class App extends React.Component{
                 <IsAuth><NavBarContainer /></IsAuth>
             <div className="container">
                 <AlertBar />
+                <Spinner />
                 <IsAuth><TabNavigation /></IsAuth>
                 
                 <Switch>

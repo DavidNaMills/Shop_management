@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ()=>(
     <div>
-        <h2>Phase 2 in development</h2>
+        <h2 style={{marginBottom:'30px', marginTop:'20px'}}>Phase 2 in development</h2>
         <h4>Features to be implemented</h4>
         <ul>
             <li>Better design of login page and home, inc. use of glyphs</li>
@@ -19,6 +19,6 @@ export default ()=>(
             <li>More informative error message reports</li>
             <li>Ability to leave custom messages for staff</li>
         </ul>
-        <p>Estimated date of completion: December 2018</p>
+        <p style={{marginTop:'20px'}}>Estimated date of completion: December 2018</p>
     </div>
 )

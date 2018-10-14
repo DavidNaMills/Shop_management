@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 import AddLocale from '../locales/Context';
+import FlagIcon from './presentational/FlagIcon';
 
 const NavBar =({locale, logout, user, changeLanguage})=>(    
 <Navbar  collapseOnSelect>
@@ -24,8 +25,8 @@ const NavBar =({locale, logout, user, changeLanguage})=>(
   }
 
         <NavDropdown eventKey={1} title="Language" id="basic-nav-dropdown">
-          <MenuItem eventKey={1.1} onClick={()=>{changeLanguage('zh');}}><span className="flag-icon flag-icon-CHN"></span> Chinese</MenuItem>
-          <MenuItem eventKey={1.2} onClick={()=>{changeLanguage('en');}}><span className="flag-icon flag-icon-GBR"></span> English</MenuItem>
+          <MenuItem eventKey={1.1} onClick={()=>{changeLanguage('zh');}}><FlagIcon code={'cn'} size={'1x'}/> 中文</MenuItem>
+          <MenuItem eventKey={1.2} onClick={()=>{changeLanguage('en');}}><FlagIcon code={'gb'} size={'1x'}/> English</MenuItem>
         </NavDropdown>
 
       </Nav>

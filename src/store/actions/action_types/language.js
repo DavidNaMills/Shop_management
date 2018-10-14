@@ -1,0 +1,1 @@
+export const CHNG_LANG = 'change_langauge';

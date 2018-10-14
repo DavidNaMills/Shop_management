@@ -13,7 +13,6 @@ import {createPurchases} from '../../store/helpers/purchaseFetchers';
 import {resetPurchase} from '../../store/actions/purchases';
 import AddLocale from '../../locales/Context';
 
-const STAGES=['Select Customer', 'Select Product', 'Check Order', 'Completed'];
 const DEFAULTS= {
     stage: 0,
     percent:25,
@@ -138,24 +137,24 @@ class PurchaseContainer extends React.Component{
         const {locale, isLoading}=this.props;
         return(
         <Grid>
-            <h3>{STAGES[this.state.stage]}</h3>
-            <div><ProgressBar active now={this.state.percent} label={locale.purchase.STAGES[this.state.stage]} /></div>
+            <h3>{locale.purchase.STAGES[this.state.stage]}</h3>
+            <div style={{paddingTop:'1vh', paddingBottom:'3vh'}}><ProgressBar active now={this.state.percent} label={locale.purchase.STAGES[this.state.stage]} /></div>
             {
                 this.state.stage!==3&&
-                <div>
+                <div style={{paddingBottom:'3vh'}}>
                     <Row>
                         <Col xs={2}>
-                            <Button bsStyle="warning" onClick={this.decrement} block disabled={this.state.stage>0?false:true}>Back</Button>
+                            <Button bsStyle="warning" onClick={this.decrement} block disabled={this.state.stage>0?false:true}>{locale.btns.back}</Button>
                         </Col>
                         {this.state.stage<2&&
                             <Col xs={2}>
-                                <Button bsStyle="primary" onClick={this.increment} block disabled={this.disableNext()}>Next</Button>
+                                <Button bsStyle="primary" onClick={this.increment} block disabled={this.disableNext()}>{locale.btns.next}</Button>
                             </Col>
                         }
 
                         {this.state.stage<2&&
                             <Col xs={1} smOffset={6}>
-                                <Button bsStyle="danger"  onClick={this.reset} small="true">Clear</Button>
+                                <Button bsStyle="danger"  onClick={this.reset} small="true">{locale.btns.clear}</Button>
                             </Col>
                         }
                     </Row>

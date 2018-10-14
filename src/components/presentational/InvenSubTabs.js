@@ -34,6 +34,7 @@ class InvenSubTabs extends React.Component {
             id="controlled-tab-example"
           >
             <Tab eventKey={1} title={locale.inventory.inventoryDetails}>
+              <div style={{paddingTop:'3vh'}}>
               <Row>
                   <Col sm={6}>
                     <BasicInventoryDetails {...this.props}/>
@@ -59,6 +60,7 @@ class InvenSubTabs extends React.Component {
                     </Col>
                   </Security>
               </Row>
+              </div>
             </Tab>
             
               <Tab eventKey={2} title={locale.inventory.inventoryStatistics}>

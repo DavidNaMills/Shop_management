@@ -32,7 +32,9 @@ class CustSubTabs extends React.Component {
             id="controlled-tab-example"
           >
             <Tab eventKey={1} title={locale.customer.customerDetails}>
-              {customer!=null&&<ViewCustomerDetails {...this.props}/>}
+              <div style={{paddingTop:'3vh'}}>
+                {customer!=null&&<ViewCustomerDetails {...this.props}/>}
+              </div>
             </Tab>
 
 

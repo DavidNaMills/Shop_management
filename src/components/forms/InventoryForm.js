@@ -127,8 +127,7 @@ class InventoryForm extends React.Component{
     render(){
         const {locale} = this.props;
         return(
-            <div>
-                <hr/>
+            <div style={{paddingTop:'3vh'}}>
                 <Form horizontal onSubmit={e=>this.onSubmit(e)}>
                     <Row>
                         <Col xs={4}>

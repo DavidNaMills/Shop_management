@@ -20,7 +20,7 @@ class App extends React.Component{
         return(
         <Router  history={history}>
             <div>
-                <IsAuth><NavBarContainer /></IsAuth>
+                <NavBarContainer />
             <div className="container">
                 <AlertBar />
                 <Spinner />

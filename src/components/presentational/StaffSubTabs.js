@@ -31,11 +31,15 @@ class StaffSubTabs extends React.Component {
             id="controlled-tab-example"
           >
             <Tab eventKey={1} title={locale.staff.staffDetails}>
-              {staff!=null&&<UpdateStaffLevelForm {...this.props}/>}
+              <div style={{paddingTop:'3vh'}}>
+                {staff!=null&&<UpdateStaffLevelForm {...this.props}/>}
+              </div>
             </Tab>
+
+
             <Tab eventKey={2} title={locale.staff.newStaff}>
               <Security level={3}>
-                {<StaffForm disabled={this.props.disabled} onSubmit={this.props.onSubmit}/>}
+                <StaffForm disabled={this.props.disabled} onSubmit={this.props.onSubmit}/>
               </Security>
             </Tab>
           </Tabs>

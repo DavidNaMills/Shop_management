@@ -8,6 +8,7 @@ import customers from './reducers/customers';
 import inventory from './reducers/inventory';
 import purchasesComplete from './reducers/purchasesComplete';
 import spinner from './reducers/spinner';
+import language from './reducers/language';
 
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk];
@@ -21,7 +22,8 @@ export default ()=>{
             customers,
             inventory,
             isComplete: purchasesComplete,
-            spinner
+            spinner,
+            language
         }),
         enhancer(),
         applyMiddleware(...middleware)

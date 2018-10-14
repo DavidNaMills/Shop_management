@@ -143,6 +143,7 @@ class Login extends React.Component{
     }
 
     render(){
+        const {locale} = this.props;
         return(
             <div className="container">
                 <Col md={8} mdOffset={2}>
@@ -155,7 +156,7 @@ class Login extends React.Component{
                             <Row>
                                 <Col md={12}>
                                     <Button bsStyle="info" onClick={()=>{this.btnOnClick()}} block disabled={this.props.isLoading}>
-                                        Next
+                                        {locale.btns.next}
                                     </Button>
                                 </Col>
                             </Row>
@@ -168,7 +169,7 @@ class Login extends React.Component{
                     <Col md={12}>
                         <br/>
                         <Button bsStyle="warning" onClick={()=>{this.cancel()}} block disabled={this.props.isLoading}>
-                            Cancel
+                            {locale.btns.cancel}
                         </Button>
                     </Col>
                 </Row>

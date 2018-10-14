@@ -38,7 +38,7 @@ class UpdateStaffLevelForm extends React.Component{
                     <DropdownButton
                       componentClass={InputGroup.Button}
                       id="input-dropdown-addon"
-                      title="Update Security Level"
+                      title={locale.staff.updateSecurityLvl}
                       eventKey={level}
                       onSelect={(eventKey=>this.setState({level:+eventKey}))}
                       block

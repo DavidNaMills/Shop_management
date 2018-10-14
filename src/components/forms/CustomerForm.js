@@ -163,7 +163,7 @@ class CustomerForm extends React.Component{
         const {locale} = this.props;
         
         return(
-            <div>
+            <div style={{paddingTop:'3vh'}}>
                 <Form horizontal onSubmit={e=>this.onSubmit(e)}>
 
     <Row>
@@ -216,7 +216,7 @@ class CustomerForm extends React.Component{
                                 </FormControl>
                             </Col>
                             <Col xs={4} xsOffset={1} smOffset={1}>
-                                <h5>{`Selected ${locale.customer.CUSTOMERTYPES[parseInt(this.state.type)]}`}</h5>
+                                <h5>{`${locale.customer.selected} ${locale.customer.CUSTOMERTYPES[parseInt(this.state.type)]}`}</h5>
                             </Col>
                         </Row>
                     </FormGroup>
@@ -236,7 +236,7 @@ class CustomerForm extends React.Component{
 
                 <FormGroup controlId="formHorizontalSex">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Sex
+                        {locale.customer.sex}
                     </Col>
                     <Col sm={6}>
                         <Radio name="radioGroup" defaultChecked inline onChange={val=>this.setState({sex:true})}>
@@ -282,7 +282,7 @@ class CustomerForm extends React.Component{
 
         <Row>
             <Col xs={12}>
-
+                <hr/>
                     <FormGroup>
                         <Row>
                             <Col smOffset={2} sm={4}>

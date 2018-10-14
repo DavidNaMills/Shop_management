@@ -3,23 +3,34 @@ import React from 'react';
 import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 import AddLocale from '../locales/Context';
 
-const NavBar =({locale, logout, name, level})=>(    
-<Navbar inverse collapseOnSelect>
+const NavBar =({locale, logout, user, changeLanguage})=>(    
+<Navbar  collapseOnSelect>
   <Navbar.Header>
     <Navbar.Brand>
-      <a href='#'>Shop Management</a>
+        ShangNaDavid
     </Navbar.Brand>
-    <Navbar.Toggle />
+  <Navbar.Toggle />
+  
   </Navbar.Header>
-  <Navbar.Collapse>
-    <Nav pullRight>
-      <NavDropdown eventKey={3} title={`${locale.welcomeMsg} ${name} ${locale.staff.level}: ${locale.staff.LEVEL[level]}`} id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1}>{locale.settings}</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.3} onClick={()=>logout()}>{locale.logout}</MenuItem>
-      </NavDropdown>
-    </Nav>
-  </Navbar.Collapse>
+    <Navbar.Collapse>
+      <Nav pullRight>
+
+  {user&&
+        <NavDropdown eventKey={3} title={`${locale.welcomeMsg} ${user.name} ${locale.staff.level}: ${locale.staff.LEVEL[user.level]}`} id="basic-nav-dropdown">
+          <MenuItem eventKey={3.1}>{locale.settings}</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey={3.2} onClick={()=>logout()}>{locale.logout}</MenuItem>
+        </NavDropdown>
+  }
+
+        <NavDropdown eventKey={1} title="Language" id="basic-nav-dropdown">
+          <MenuItem eventKey={1.1} onClick={()=>{changeLanguage('zh');}}><span className="flag-icon flag-icon-CHN"></span> Chinese</MenuItem>
+          <MenuItem eventKey={1.2} onClick={()=>{changeLanguage('en');}}><span className="flag-icon flag-icon-GBR"></span> English</MenuItem>
+        </NavDropdown>
+
+      </Nav>
+    </Navbar.Collapse>
+
 </Navbar>
 );
 

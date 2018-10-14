@@ -123,7 +123,7 @@ class StaffForm extends React.Component{
     render(){
         const {locale} = this.props;
         return(
-        <div>
+            <div style={{paddingTop:'3vh'}}>
             <Form horizontal onSubmit={e=>this.onSubmit(e)}>
                 <FormGroup controlId="formHorizontalName" validationState={this.validateLocalName()} onBlur={()=>this.setState({nameF:true})} onFocus={()=>this.setState({nameF:false})}>
                     <Col componentClass={ControlLabel} sm={2}>
@@ -200,6 +200,7 @@ class StaffForm extends React.Component{
 
                 <FormGroup>
                     <Row>
+                    <hr/>
                         <Col smOffset={2} sm={2}>
                             <Button type="submit" bsStyle="success" block disabled={this.props.disabled}>{locale.btns.submit}</Button>
                         </Col>

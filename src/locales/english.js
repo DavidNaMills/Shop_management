@@ -53,12 +53,14 @@ export default {
         newStaff:'New Staff',
         LEVEL: ['Basic', 'Junior', 'Advanced', 'Admin'],
         level: 'Level',
+        securityLevel: 'Security Level',
         name:'Name',
         email:'Email',
         security:'Security level',
         username:'Username',
         password:'Password',
-        repassword:'Re-enter password'
+        repassword:'Re-enter password',
+        updateSecurityLvl: 'Update Security Level'
     },
     customer:{
         customerDetails:'Customer Details',
@@ -75,6 +77,7 @@ export default {
         female:'Female',
         dob:'DoB',
         MONTHS:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        selected: 'Selected'
     },
     inventory:{
         inventoryDetails:'Inventory Details',

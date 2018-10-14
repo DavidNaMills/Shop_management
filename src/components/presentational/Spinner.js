@@ -18,9 +18,11 @@ class Spinner extends React.Component {
       height: "100vh",
       justifyContent: "center",
       width: "100vw",
+      zIndex:-9999
     };
 
-    const z = {zIndex:1}
+    // const z = {zIndex:1, backgroundColor:'rgb(214, 255, 227, 0.4)'}
+    const z = {zIndex:999, backgroundColor:'rgb(89, 108, 255, 0.2)'}
 
     return (
       <div style={isLoading?{...styles, ...z}:styles}>
@@ -28,7 +30,6 @@ class Spinner extends React.Component {
           sizeUnit={"vh"}
           size={20}
           color={'#00FFFF'}
-          // loading={true}
           loading={isLoading}
         />
       </div> 

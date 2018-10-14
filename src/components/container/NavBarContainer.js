@@ -4,22 +4,28 @@ import {connect} from 'react-redux';
 import NavBar from '../NavBar';
 
 import {startLogout} from '../../store/actions/auth';
+import {changeLanguage} from '../../store/actions/language';
 
 class NavBarContainer extends React.Component{ 
 
+    changeLocale=(lan)=>{
+        console.log(lan);
+        this.props.locale(lan);
+    }
+
     render(){
-        const {name, level} = this.props.user;
         return(
             <div style={{marginBottom:'2vh'}}>
-                <NavBar logout={this.props.logout} name={name} level={level}/>
+                <NavBar changeLanguage={this.changeLocale} logout={this.props.logout} user={this.props.user}/>
             </div>
         );
     }
 
 }
 
-const mapDispatchToProps=(dispatch)=>({
-    logout: ()=>dispatch(startLogout())
+const mapDispatchToProps=(dispatch, props)=>({
+    logout: ()=>dispatch(startLogout()),
+    locale: (lan)=>dispatch(changeLanguage(lan))
 })
 
 const mapStateToProps=(state)=>({

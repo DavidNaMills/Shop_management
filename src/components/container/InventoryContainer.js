@@ -44,7 +44,7 @@ class InventoryContainer extends React.Component{
     }
 
     onSubmit=(values)=>{
-        this.props.addInventory(values, this.props.token).catch(err=>console.log(err));
+        this.props.addInventory(values);
     }
 
     onUpdate=(newInfo)=>{
@@ -64,7 +64,7 @@ class InventoryContainer extends React.Component{
     }
 
     update=(data)=>{
-        this.props.updateInventory(data, this.state.selectedInven._id, this.props.token);
+        this.props.updateInventory(data, this.state.selectedInven._id);
     }
 
 

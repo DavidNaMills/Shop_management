@@ -3,7 +3,26 @@ import {setAlert} from '../actions/notification';
 import {DANGER, SUCCESS} from '../../style/alert';
 import {startLoader, endLoader} from '../actions/spinner';
 
+
+
+import dummyStaff from '../DemoData/staff';
 export const fetchStaff=()=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(fetchAllStaff(dummyStaff));
+                dispatch(endLoader());
+            }, 3000);
+        }else{
+            dispatch(fetchStaff_real());
+        }
+    }
+}
+
+
+export const fetchStaff_real=()=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/staff`,{
@@ -29,7 +48,40 @@ export const fetchStaff=()=>{
     }
 }
 
+
 export const createStaff=(values)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+
+            const x= Math.random() * (3 - 0) + 0;
+            if(x===0){
+                const y= Math.random() * (3 - 0) + 0;
+                switch(y){
+                    case 0:
+                        dispatch(setAlert('DEMO_STAFF_EXISTS', DANGER));
+                        return;
+                    case 1:
+                        dispatch(setAlert('DEMO_STAFF_INVALID_EMAIL', DANGER));
+                        return;
+                    default:
+                        dispatch(setAlert('DEMO_STAFF_EMAIL_EXISTS', DANGER));
+                        return;
+                };
+            }else{
+                dispatch(setAlert('DEMO_STAFF_CREATED',SUCCESS));
+            }
+
+            dispatch(endLoader());
+
+
+        }else{
+            dispatch(createStaff_real(values));
+        }
+    }
+}
+
+
+export const createStaff_real=(values)=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/signup`,{
@@ -65,7 +117,25 @@ export const createStaff=(values)=>{
     }
 }
 
+
 export const updateLevel=(id, level)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+
+            dispatch(startLoader());
+            setTimeout(()=>{
+                dispatch(setAlert('DEMO_STAFF_LEVEL', SUCCESS));
+                dispatch(endLoader());
+            }, 3000);
+
+        }else{
+            dispatch(createStaff_real(id, level));
+        }
+    }
+}
+
+
+export const updateLevel_real=(id, level)=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/staff`,{
@@ -97,7 +167,25 @@ export const updateLevel=(id, level)=>{
     }
 }
 
+
 export const deleteStaffMember=(id)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+
+            dispatch(startLoader());
+            setTimeout(()=>{
+                dispatch(setAlert('DEMO_STAFF_DELETED', SUCCESS));
+                dispatch(endLoader());
+            }, 3000);
+
+        }else{
+            dispatch(deleteStaffMember_real(id));
+        }        
+    }
+}
+
+
+export const deleteStaffMember_real=(id)=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/staff`,{

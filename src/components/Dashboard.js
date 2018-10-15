@@ -7,6 +7,7 @@ export default ()=>(
         <ul>
             <li>Better design of login page and home, inc. use of glyphs</li>
             <li>Better customer and inventory management</li>
+            <li>Viewing/searching/filtering of purchase details</li>
             <li>Sales statistics</li>
             <li>Staff performance statistics</li>
             <li>Inventory statistics</li>

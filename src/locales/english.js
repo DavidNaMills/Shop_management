@@ -146,6 +146,20 @@ export default {
         inventory_quantity: 'Inventory quantity has been changed',
         Purchase_not_placed: 'Error placing purchase',
         email_exists: 'Email already exists',
-        username_exists: 'Username already exists'
+        username_exists: 'Username already exists',
+
+        DEMO_CUSTOMER_EXISTS: 'Demo Version: (Randomised) Customer already exists',
+        DEMO_INVALID_EMAIL: 'Demo Version: (Randomised) Invalid email address',
+        DEMO_EMAIL_EXISTS: 'Demo Version: (Randomised) Email already exists',
+        DEMO_CUSTOMER_ADDED: '(Demo version: not really) customer_added',
+        DEMO_STAFF_EXISTS: 'Demo Version: (Randomised) Staff already exists',
+        DEMO_STAFF_INVALID_EMAIL: 'Demo Version: (Randomised) Invalid email address',
+        DEMO_STAFF_EMAIL_EXISTS: 'Demo Version: (Randomised) Email already exists',
+        DEMO_STAFF_CREATED: '(Demo version: not really) staff Added',
+        DEMO_STAFF_LEVEL: '(Demo version: not really) level updated',
+        DEMO_STAFF_DELETED:'(Demo version: not really) staff deleted',
+        DEMO_INVENTORY_UPDATED: '(Demo version) Inventory Updated',
+        DEMO_INVENTORY_ADDED: '(Demo version) inventory_added',
+        DEMO_INVENTORY_PURCHASE: '(Demo version) purchase placed'
     }
 }

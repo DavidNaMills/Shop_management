@@ -3,7 +3,29 @@ import {fetchAllCustomers} from '../actions/customers';
 import {startLoader, endLoader} from '../actions/spinner';
 import { DANGER, SUCCESS } from '../../style/alert';
 
+
+
+import dummyCustomer from '../DemoData/customers';
+
 export const fetchCustomers=()=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(fetchAllCustomers(dummyCustomer));
+                dispatch(endLoader());
+            }, 3000);
+
+
+        } else {
+            dispatch(fetchCustomers_real());
+        }
+    };
+};
+
+
+export const fetchCustomers_real=()=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/customer/all`,{
@@ -33,7 +55,39 @@ export const fetchCustomers=()=>{
     }
 }
 
+
+
 export const createCustomer=(values)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+
+            const x= Math.random() * (3 - 0) + 0;
+            if(x===0){
+                const y= Math.random() * (3 - 0) + 0;
+                switch(y){
+                    case 0:
+                        dispatch(setAlert('DEMO_CUSTOMER_EXISTS', DANGER));
+                        return;
+                    case 1:
+                        dispatch(setAlert('DEMO_INVALID_EMAIL', DANGER));
+                        return;
+                    default:
+                        dispatch(setAlert('DEMO_EMAIL_EXISTS', DANGER));
+                        return;
+                };
+            }else{
+                dispatch(setAlert('DEMO_CUSTOMER_ADDED',SUCCESS));
+            }
+
+            dispatch(endLoader());
+
+        } else {
+            dispatch(fetchCustomers_real(values));
+        }
+    };
+};
+
+export const createCustomer_real=(values)=>{
     return (dispatch,getState)=>{
         dispatch(startLoader());
         return fetch(`/customer`,{

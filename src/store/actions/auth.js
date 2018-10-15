@@ -5,12 +5,32 @@ import history from '../../components/history';
 import { DANGER } from '../../style/alert';
 
 
+import authDummy from '../DemoData/auth';
+
 const login=(data)=>({
     type: LOGIN,
     payload: data
 });
 
+
+
 export const startLogin=(username, password)=>{
+    return (dispatch)=>{
+        if(username==='demodemo' && password==='111zzzZZZ!'){
+            dispatch(startLoader());
+            setTimeout(()=>{
+                dispatch(login(authDummy));
+                dispatch(endLoader());
+                history.replace('/dashboard');
+            }, 3000);
+
+        } else{
+            dispatch(startLogin_real(username, password));
+        }
+    }
+}
+
+export const startLogin_real=(username, password)=>{
     return (dispatch)=>{
         dispatch(startLoader());
         fetch(`/login`,
@@ -36,7 +56,7 @@ export const startLogin=(username, password)=>{
         })
         .then(()=>{
             dispatch(endLoader());
-            history.replace('/dashboard')
+            history.replace('/dashboard');
         })
         .catch((err)=>{
             dispatch(endLoader());

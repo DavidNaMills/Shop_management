@@ -4,7 +4,23 @@ import {startLoader, endLoader} from '../actions/spinner';
 import { DANGER, SUCCESS } from '../../style/alert';
 
 
+import dummyInventory from '../DemoData/inventory';
 export const fetchInventory=()=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(fetchAllInventory(dummyInventory));
+                dispatch(endLoader());
+            }, 3000);
+        }else{
+            dispatch(fetchInventory_real());
+        }
+    }
+};
+
+export const fetchInventory_real=()=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/inventory`,{
@@ -38,7 +54,25 @@ export const fetchInventory=()=>{
     }
 }
 
+
+
+
 export const updateInventory=(data, id)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(setAlert('DEMO_INVENTORY_UPDATED', SUCCESS));
+                dispatch(endLoader());
+            }, 3000);
+        }else{
+            dispatch(updateInventory_real(data, id));
+        }  
+    }
+}
+
+export const updateInventory_real=(data, id)=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/inventory`,{
@@ -74,7 +108,24 @@ export const updateInventory=(data, id)=>{
     }
 }
 
+
+
 export const addInventory=(values)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(setAlert('DEMO_INVENTORY_ADDED', SUCCESS));
+                dispatch(endLoader());
+            }, 3000);
+        }else{
+            dispatch(addInventory_real(values));
+        }        
+    }
+}
+
+export const addInventory_real=(values)=>{
     return (dispatch, getState)=>{
         dispatch(startLoader());
         return fetch(`/inventory`,{

@@ -6,7 +6,7 @@ import {deductInventory, fetchInventory} from './inventoryFetchers';
 import {updateCustomerTTL} from './customerFetchers';
 
 
-export const createPurchases=({inven, customer, refNo})=>{
+export const createPurchases_real=({inven, customer, refNo})=>{
     return (dispatch)=>{
         dispatch(makePurchase(inven, customer, refNo));
         let ttl=0;
@@ -19,6 +19,27 @@ export const createPurchases=({inven, customer, refNo})=>{
         dispatch(fetchInventory());
     }
 }
+
+
+
+export const createPurchases=(data)=>{
+    return (dispatch, getState)=>{
+        if(getState().auth.staff.name==='Dummy Account'){
+            dispatch(startLoader());
+
+            setTimeout(()=>{
+                dispatch(completedPurchase());
+                dispatch(setAlert('DEMO_INVENTORY_PURCHASE', SUCCESS));
+                dispatch(endLoader());
+            }, 3000);
+
+
+        } else {
+            dispatch(createPurchases_real(data));
+        }
+    }
+}
+
 
 const makePurchase=(inven, customer, refNo)=>{
     return (dispatch, getState)=>{
